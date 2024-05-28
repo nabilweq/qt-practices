@@ -58,7 +58,7 @@ public:
 private slots:
     void addToCart(const QString &productName, const QString &productPrice) {
         cartList->addItem(productName + " - " + productPrice);
-        cartList->setStyleSheet("background-color: red;");
+        cartList->setStyleSheet("background-color: green;");
         updateTotal();
     }
 
