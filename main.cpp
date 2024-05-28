@@ -90,7 +90,7 @@ private:
     }
 
     void updateTotal() {
-        // Example implementation to update the total price
+        // Example implementation to update the totalprice
         int itemCount = cartList->count();
         double totalPrice = 0.00;
 
