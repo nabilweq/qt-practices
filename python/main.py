@@ -56,7 +56,6 @@ class POSWindow(QWidget):
         item = self.item_input.text()
         quantity = self.quantity_input.text()
         price = self.price_input.text()
-        
 
         if item and quantity and price:
             row_position = self.table.rowCount()
