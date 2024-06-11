@@ -51,7 +51,7 @@ public:
         // Connect signals and slots
         connect(checkoutButton, &QPushButton::clicked, this, &OdooPOSWindow::checkout);
 
-        // Load products
+        // Load products 
         loadProducts(scrollLayout);
     }
 
