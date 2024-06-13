@@ -58,17 +58,12 @@ public:
         // Connect signals and slots
         connect(checkoutButton, &QPushButton::clicked, this, &OdooPOSWindow::checkout);
 
-<<<<<<< HEAD
         // Initialize network manager
         manager = new QNetworkAccessManager(this);
         connect(manager, &QNetworkAccessManager::finished, this, &OdooPOSWindow::onNetworkReply);
 
         // Load products from API
         loadProducts();
-=======
-        // Load products 
-        loadProducts(scrollLayout);
->>>>>>> refs/remotes/origin/main
     }
 
 private slots:
