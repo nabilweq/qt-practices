@@ -34,7 +34,6 @@ public:
         scrollLayout = new QVBoxLayout(scrollWidget);
         scrollArea->setWidget(scrollWidget);
 
-        // Create the cart list and set a background color
         cartList = new QListWidget(this);
         cartList->setStyleSheet("background-color: white; color: black");
 
