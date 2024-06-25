@@ -21,7 +21,6 @@ public:
         QHBoxLayout *productLayout = new QHBoxLayout();
         QVBoxLayout *cartLayout = new QVBoxLayout();
 
-        // Create the scroll area and a widget to hold the product cards
         QScrollArea *scrollArea = new QScrollArea(this);
         QWidget *scrollWidget = new QWidget();
         QVBoxLayout *scrollLayout = new QVBoxLayout(scrollWidget);
