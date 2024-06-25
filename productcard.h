@@ -3,23 +3,30 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <QVBoxLayout>
 #include <QPushButton>
+#include <QVBoxLayout>
+#include <QFrame>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 
-class ProductCard : public QWidget {
+class ProductCard : public QFrame {
     Q_OBJECT
 
 public:
-    ProductCard(const QString &productName, const QString &productPrice, const QString &productImage, QWidget *parent = nullptr);
+    explicit ProductCard(const QString &productName, const QString &productPrice, const QString &productImage, QWidget *parent = nullptr);
 
 signals:
     void addToCart(const QString &productName, const QString &productPrice);
 
+private slots:
+    void onImageDownloaded(QNetworkReply *reply);
+
 private:
+    QLabel *imageLabel;
     QLabel *nameLabel;
     QLabel *priceLabel;
-    QLabel *imageLabel;
     QPushButton *addButton;
+    QNetworkAccessManager *manager;
 };
 
 #endif // PRODUCTCARD_H

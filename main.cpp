@@ -6,7 +6,12 @@
 #include <QListWidget>
 #include <QPushButton>
 #include <QLabel>
-#include <tuple>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QDebug>
 #include "productcard.h"
 
 class OdooPOSWindow : public QMainWindow {
@@ -22,21 +27,19 @@ public:
         QVBoxLayout *cartLayout = new QVBoxLayout();
 
         QScrollArea *scrollArea = new QScrollArea(this);
-        QWidget *scrollWidget = new QWidget();
-        QVBoxLayout *scrollLayout = new QVBoxLayout(scrollWidget);
-
-        scrollWidget->setLayout(scrollLayout);
-        scrollArea->setWidget(scrollWidget);
         scrollArea->setWidgetResizable(true);
         scrollArea->setStyleSheet("background-color: lightblue;");
 
+        scrollWidget = new QWidget();
+        scrollLayout = new QVBoxLayout(scrollWidget);
+        scrollArea->setWidget(scrollWidget);
+
         // Create the cart list and set a background color
         cartList = new QListWidget(this);
-        cartList->setStyleSheet("background-color: lightgreen;");
+        cartList->setStyleSheet("background-color: white; color: black");
 
-        QLabel *totalLabel = new QLabel("Total: $0.00", this);
-
-        QPushButton *checkoutButton = new QPushButton("Checkout", this);
+        totalLabel = new QLabel("Total: $0.00", this);
+        checkoutButton = new QPushButton("Checkout", this);
 
         productLayout->addWidget(scrollArea);
         productLayout->addLayout(cartLayout);
@@ -45,19 +48,26 @@ public:
         cartLayout->addWidget(totalLabel);
         cartLayout->addWidget(checkoutButton);
 
+        // Set size policy and stretching for productLayout
+        //productLayout->setSpacing(20); // Set spacing between widgets
+       // productLayout->setContentsMargins(20, 20, 20); // Set margins around the layout
+
         mainLayout->addLayout(productLayout);
 
         // Connect signals and slots
         connect(checkoutButton, &QPushButton::clicked, this, &OdooPOSWindow::checkout);
 
-        // Load products 
-        loadProducts(scrollLayout);
+        // Initialize network manager
+        manager = new QNetworkAccessManager(this);
+        connect(manager, &QNetworkAccessManager::finished, this, &OdooPOSWindow::onNetworkReply);
+
+        // Load products from API
+        loadProducts();
     }
 
 private slots:
     void addToCart(const QString &productName, const QString &productPrice) {
         cartList->addItem(productName + " - " + productPrice);
-        cartList->setStyleSheet("background-color: green;");
         updateTotal();
     }
 
@@ -66,42 +76,77 @@ private slots:
         updateTotal();
     }
 
-private:
-    QListWidget *cartList;
+    void onNetworkReply(QNetworkReply *reply) {
+        if (reply->error() == QNetworkReply::NoError) {
+            QByteArray response_data = reply->readAll();
+            QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+            QJsonArray jsonArray = json_doc.array();
 
-    void loadProducts(QVBoxLayout *scrollLayout) {
-        // Example list of products with images
-        QList<std::tuple<QString, QString, QString>> products = {
-            {"Product 1", "$10.00", "./assets/images/1.jpg"},
-            {"Product 2", "$20.00", "./assets/images/1.jpg"},
-            {"Product 3", "$30.00", "./assets/images/1.jpg"},
-            {"Product 4", "$40.00", "./assets/images/1.jpg"},
-            {"Product 5", "$50.00", "./assets/images/1.jpg"}
-        };
+            int productCount = 0;
+            QHBoxLayout *currentRowLayout = nullptr;
+            QWidget *currentRowWidget = nullptr;
 
-        // Add product cards to the scroll layout
-        for (const auto &product : products) {
-            ProductCard *card = new ProductCard(std::get<0>(product), std::get<1>(product), std::get<2>(product), this);
-            scrollLayout->addWidget(card);
+            for (const QJsonValue &value : jsonArray) {
+                if (productCount >= 20) { // Limit to 15 cards (5 rows of 3 cards each)
+                    break;
+                }
 
-            connect(card, &ProductCard::addToCart, this, &OdooPOSWindow::addToCart);
+                QJsonObject productObject = value.toObject();
+                QString title = productObject["title"].toString();
+                QString price = QString::number(productObject["id"].toInt()) + ".00"; // Example price based on ID
+                QString imageUrl = productObject["url"].toString();
+
+                ProductCard *card = new ProductCard(title, price, imageUrl, this);
+                connect(card, &ProductCard::addToCart, this, &OdooPOSWindow::addToCart);
+
+                // Set size for the product card
+                card->setFixedSize(200, 300); // Adjust size as needed
+
+                // Create a new row if necessary
+                if (productCount % 3 == 0) {
+                    currentRowWidget = new QWidget();
+                    currentRowLayout = new QHBoxLayout(currentRowWidget);
+                    scrollLayout->addWidget(currentRowWidget);
+                }
+
+                // Add the card to the current row
+                currentRowLayout->addWidget(card);
+
+                ++productCount;
+            }
+        } else {
+            qWarning() << "Network error: " << reply->errorString();
         }
+        reply->deleteLater();
     }
 
     void updateTotal() {
-        // Example implementation to update the totalprice
-        int itemCount = cartList->count();
+        // Example implementation to update the total price
         double totalPrice = 0.00;
 
-        for (int i = 0; i < itemCount; ++i) {
+        for (int i = 0; i < cartList->count(); ++i) {
             QString itemText = cartList->item(i)->text();
             QString priceText = itemText.split(" - ").last();
-            totalPrice += priceText.mid(1).toDouble();
+            totalPrice += priceText.toDouble();
         }
 
-        QLabel *totalLabel = findChild<QLabel *>();
         totalLabel->setText(QString("Total: $%1").arg(totalPrice, 0, 'f', 2));
     }
+
+    void loadProducts() {
+        QUrl url("https://jsonplaceholder.typicode.com/photos/"); // Replace with your actual API URL
+        qDebug() << "Requesting products from URL:" << url.toString();
+        QNetworkRequest request(url);
+        manager->get(request);
+    }
+
+private:
+    QListWidget *cartList;
+    QLabel *totalLabel;
+    QPushButton *checkoutButton;
+    QWidget *scrollWidget;
+    QVBoxLayout *scrollLayout;
+    QNetworkAccessManager *manager;
 };
 
 #include "main.moc"
