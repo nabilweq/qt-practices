@@ -1,11 +1,3 @@
-/****************************************************************************
-** Meta object code from reading C++ file 'productcard.h'
-**
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.7.0)
-**
-** WARNING! All changes made in this file will be lost!
-*****************************************************************************/
-
 #include "productcard.h"
 #include <QtGui/qtextcursor.h>
 #include <QtNetwork/QSslError>
