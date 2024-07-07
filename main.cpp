@@ -60,7 +60,6 @@ public:
         manager = new QNetworkAccessManager(this);
         connect(manager, &QNetworkAccessManager::finished, this, &OdooPOSWindow::onNetworkReply);
 
-        // Load products from API
         loadProducts();
     }
 
@@ -86,7 +85,7 @@ private slots:
             QWidget *currentRowWidget = nullptr;
 
             for (const QJsonValue &value : jsonArray) {
-                if (productCount >= 20) { // Limit to 15 cards (5 rows of 3 cards each)
+                if (productCount >= 20) {
                     break;
                 }
 
