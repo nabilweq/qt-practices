@@ -31,4 +31,4 @@ private:
     QJsonArray products;
 };
 
-#endif // MAINWINDOW_H
+#endif

@@ -29,4 +29,4 @@ private:
     QNetworkAccessManager *manager;
 };
 
-#endif // PRODUCTCARD_H
+#endif

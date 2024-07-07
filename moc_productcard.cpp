@@ -7,7 +7,6 @@
 
 #include <memory>
 
-
 #include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'productcard.h' doesn't include <QObject>."
