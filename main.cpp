@@ -92,14 +92,13 @@ private slots:
 
                 QJsonObject productObject = value.toObject();
                 QString title = productObject["title"].toString();
-                QString price = QString::number(productObject["id"].toInt()) + ".00"; // Example price based on ID
+                QString price = QString::number(productObject["id"].toInt()) + ".00";
                 QString imageUrl = productObject["url"].toString();
 
                 ProductCard *card = new ProductCard(title, price, imageUrl, this);
                 connect(card, &ProductCard::addToCart, this, &OdooPOSWindow::addToCart);
 
-                // Set size for the product card
-                card->setFixedSize(200, 300); // Adjust size as needed
+                card->setFixedSize(200, 300);
 
                 if (productCount % 3 == 0) {
                     currentRowWidget = new QWidget();
