@@ -101,14 +101,12 @@ private slots:
                 // Set size for the product card
                 card->setFixedSize(200, 300); // Adjust size as needed
 
-                // Create a new row if necessary
                 if (productCount % 3 == 0) {
                     currentRowWidget = new QWidget();
                     currentRowLayout = new QHBoxLayout(currentRowWidget);
                     scrollLayout->addWidget(currentRowWidget);
                 }
 
-                // Add the card to the current row
                 currentRowLayout->addWidget(card);
 
                 ++productCount;
@@ -120,7 +118,6 @@ private slots:
     }
 
     void updateTotal() {
-        // Example implementation to update the total price
         double totalPrice = 0.00;
 
         for (int i = 0; i < cartList->count(); ++i) {
@@ -133,7 +130,7 @@ private slots:
     }
 
     void loadProducts() {
-        QUrl url("https://jsonplaceholder.typicode.com/photos/"); // Replace with your actual API URL
+        QUrl url("https://jsonplaceholder.typicode.com/photos/");
         qDebug() << "Requesting products from URL:" << url.toString();
         QNetworkRequest request(url);
         manager->get(request);
