@@ -56,7 +56,6 @@ public:
         // Connect signals and slots
         connect(checkoutButton, &QPushButton::clicked, this, &OdooPOSWindow::checkout);
 
-        // Initialize network manager
         manager = new QNetworkAccessManager(this);
         connect(manager, &QNetworkAccessManager::finished, this, &OdooPOSWindow::onNetworkReply);
 
