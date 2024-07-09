@@ -128,7 +128,7 @@ private slots:
     }
 
     void loadProducts() {
-        QUrl url("https://jsonplaceholder.typicode.com/photos/");
+        QUrl url("https://jsonplaceholder.typicode.com/photos/"); // Sample url to fetch dummy data
         qDebug() << "Requesting products from URL:" << url.toString();
         QNetworkRequest request(url);
         manager->get(request);
