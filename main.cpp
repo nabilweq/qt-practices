@@ -53,7 +53,6 @@ public:
 
         mainLayout->addLayout(productLayout);
 
-        // Connect signals and slots
         connect(checkoutButton, &QPushButton::clicked, this, &OdooPOSWindow::checkout);
 
         manager = new QNetworkAccessManager(this);
