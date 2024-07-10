@@ -49,7 +49,7 @@ public:
 
         // Set size policy and stretching for productLayout
         // productLayout->setSpacing(25); // Set spacing between widgets
-        // productLayout->setContentsMargins(21, 21, 20); // Set margins around the layout
+        // productLayout->setContentsMargins(21, 21, 21); // Set margins around the layout
 
         mainLayout->addLayout(productLayout);
 
