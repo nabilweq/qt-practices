@@ -48,7 +48,7 @@ public:
         cartLayout->addWidget(checkoutButton);
 
         // Set size policy and stretching for productLayout
-        // productLayout->setSpacing(20); // Set spacing between widgets
+        // productLayout->setSpacing(25); // Set spacing between widgets
         // productLayout->setContentsMargins(20, 20, 20); // Set margins around the layout
 
         mainLayout->addLayout(productLayout);
