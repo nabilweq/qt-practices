@@ -23,7 +23,7 @@ ProductCard::ProductCard(const QString &productName, const QString &productPrice
     layout->addWidget(nameLabel);
 
     priceLabel = new QLabel(productPrice, this);
-    priceLabel->setStyleSheet("font-size: 14px; color: green;");
+    priceLabel->setStyleSheet("font-size: 15px; color: green;");
     priceLabel->setAlignment(Qt::AlignCenter);
     layout->addWidget(priceLabel);
 
