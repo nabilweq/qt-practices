@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = OdooPOS1.0.0
-DISTDIR = /Users/nabeelsht/backup/qt/.tmp/OdooPOS1.0.0
+DISTDIR = /Users/nabeeltk/odoo/qt-practices/.tmp/OdooPOS1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -mmacosx-version-min=14.0 -Wl,-rpath,@executable_path/../Frameworks -Wl,-rpath,/opt/homebrew/lib
 LIBS          = $(SUBLIBS) -F/opt/homebrew/lib -F/opt/homebrew/opt/qt/lib -framework QtWidgets -framework QtGui -framework AppKit -framework ImageIO -framework Metal -framework QtNetwork -framework QtCore -framework IOKit -framework DiskArbitration -framework AGL -framework OpenGL   
@@ -410,12 +410,12 @@ TARGET        = OdooPOS.app/Contents/MacOS/OdooPOS
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 14.5
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
-EXPORT__QMAKE_STASH_ = /Users/nabeelsht/backup/qt/.qmake.stash
+EXPORT__QMAKE_STASH_ = /Users/nabeeltk/odoo/qt-practices/.qmake.stash
 EXPORT_VALID_ARCHS = arm64
 EXPORT_DEFAULT_ARCHS = arm64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
 EXPORT_ARCH_ARGS = $(foreach arch, $(if $(EXPORT_ARCHS), $(EXPORT_ARCHS), $(EXPORT_VALID_ARCHS)), -arch $(arch))
-EXPORT__PRO_FILE_ = /Users/nabeelsht/backup/qt/HelloWorld.pro
+EXPORT__PRO_FILE_ = /Users/nabeeltk/odoo/qt-practices/HelloWorld.pro
 
 
 include /opt/homebrew/Cellar/qt/6.7.0_1/share/qt/mkspecs/features/mac/sdk.mk
@@ -1135,7 +1135,7 @@ OdooPOS.app/Contents/PkgInfo:
 OdooPOS.app/Contents/Info.plist: 
 	@test -d OdooPOS.app/Contents || mkdir -p OdooPOS.app/Contents
 	@$(DEL_FILE) OdooPOS.app/Contents/Info.plist
-	@plutil -convert xml1 -o - /opt/homebrew/share/qt/mkspecs/macx-clang/Info.plist.app | sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,\$${QMAKE_SHORT_VERSION},1.0,g" -e "s,@FULL_VERSION@,1.0.0,g" -e "s,\$${QMAKE_FULL_VERSION},1.0.0,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" -e "s,@BUNDLEIDENTIFIER@,com.yourcompany.OdooPOS,g" -e "s,\$${PRODUCT_BUNDLE_IDENTIFIER},com.yourcompany.OdooPOS,g" -e "s,\$${MACOSX_DEPLOYMENT_TARGET},14.0,g" -e "s,\$${IPHONEOS_DEPLOYMENT_TARGET},,g" -e "s,\$${TVOS_DEPLOYMENT_TARGET},,g" -e "s,\$${WATCHOS_DEPLOYMENT_TARGET},,g" -e "s,\$${IOS_LAUNCH_SCREEN},LaunchScreen,g" -e "s,@ICON@,,g" -e "s,\$${ASSETCATALOG_COMPILER_APPICON_NAME},,g" -e "s,@EXECUTABLE@,OdooPOS,g" -e "s,@LIBRARY@,OdooPOS,g" -e "s,\$${EXECUTABLE_NAME},OdooPOS,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" >OdooPOS.app/Contents/Info.plist
+	@plutil -convert xml1 -o - /opt/homebrew/share/qt/mkspecs/macx-clang/Info.plist.app | sed -e "s,@SHORT_VERSION@,1.0,g" -e "s,\$${QMAKE_SHORT_VERSION},1.0,g" -e "s,@FULL_VERSION@,1.0.0,g" -e "s,\$${QMAKE_FULL_VERSION},1.0.0,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" -e "s,@BUNDLEIDENTIFIER@,csstest.OdooPOS,g" -e "s,\$${PRODUCT_BUNDLE_IDENTIFIER},csstest.OdooPOS,g" -e "s,\$${MACOSX_DEPLOYMENT_TARGET},14.0,g" -e "s,\$${IPHONEOS_DEPLOYMENT_TARGET},,g" -e "s,\$${TVOS_DEPLOYMENT_TARGET},,g" -e "s,\$${WATCHOS_DEPLOYMENT_TARGET},,g" -e "s,\$${IOS_LAUNCH_SCREEN},LaunchScreen,g" -e "s,@ICON@,,g" -e "s,\$${ASSETCATALOG_COMPILER_APPICON_NAME},,g" -e "s,@EXECUTABLE@,OdooPOS,g" -e "s,@LIBRARY@,OdooPOS,g" -e "s,\$${EXECUTABLE_NAME},OdooPOS,g" -e "s,@TYPEINFO@,????,g" -e "s,\$${QMAKE_PKGINFO_TYPEINFO},????,g" >OdooPOS.app/Contents/Info.plist
 
 all: Makefile \
 		OdooPOS.app/Contents/PkgInfo \
@@ -1424,7 +1424,7 @@ moc_productcard.cpp: productcard.h \
 		/opt/homebrew/opt/qt/include/QtNetwork/qnetworkaccessmanager.h \
 		moc_predefs.h \
 		/opt/homebrew/share/qt/libexec/moc
-	/opt/homebrew/share/qt/libexec/moc $(DEFINES) --include /Users/nabeelsht/backup/qt/moc_predefs.h -I/opt/homebrew/share/qt/mkspecs/macx-clang -I/Users/nabeelsht/backup/qt -I/opt/homebrew/opt/qt/include -I/opt/homebrew/lib/QtWidgets.framework/Headers -I/opt/homebrew/lib/QtGui.framework/Headers -I/opt/homebrew/lib/QtNetwork.framework/Headers -I/opt/homebrew/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/opt/homebrew/lib productcard.h -o moc_productcard.cpp
+	/opt/homebrew/share/qt/libexec/moc $(DEFINES) --include /Users/nabeeltk/odoo/qt-practices/moc_predefs.h -I/opt/homebrew/share/qt/mkspecs/macx-clang -I/Users/nabeeltk/odoo/qt-practices -I/opt/homebrew/opt/qt/include -I/opt/homebrew/lib/QtWidgets.framework/Headers -I/opt/homebrew/lib/QtGui.framework/Headers -I/opt/homebrew/lib/QtNetwork.framework/Headers -I/opt/homebrew/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/opt/homebrew/lib productcard.h -o moc_productcard.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1707,7 +1707,7 @@ main.moc: main.cpp \
 		/opt/homebrew/opt/qt/include/QtCore/qtmochelpers.h \
 		moc_predefs.h \
 		/opt/homebrew/share/qt/libexec/moc
-	/opt/homebrew/share/qt/libexec/moc $(DEFINES) --include /Users/nabeelsht/backup/qt/moc_predefs.h -I/opt/homebrew/share/qt/mkspecs/macx-clang -I/Users/nabeelsht/backup/qt -I/opt/homebrew/opt/qt/include -I/opt/homebrew/lib/QtWidgets.framework/Headers -I/opt/homebrew/lib/QtGui.framework/Headers -I/opt/homebrew/lib/QtNetwork.framework/Headers -I/opt/homebrew/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/opt/homebrew/lib main.cpp -o main.moc
+	/opt/homebrew/share/qt/libexec/moc $(DEFINES) --include /Users/nabeeltk/odoo/qt-practices/moc_predefs.h -I/opt/homebrew/share/qt/mkspecs/macx-clang -I/Users/nabeeltk/odoo/qt-practices -I/opt/homebrew/opt/qt/include -I/opt/homebrew/lib/QtWidgets.framework/Headers -I/opt/homebrew/lib/QtGui.framework/Headers -I/opt/homebrew/lib/QtNetwork.framework/Headers -I/opt/homebrew/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/opt/homebrew/lib main.cpp -o main.moc
 
 compiler_uic_make_all:
 compiler_uic_clean:
