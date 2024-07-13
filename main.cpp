@@ -37,7 +37,7 @@ public:
         cartList = new QListWidget(this);
         cartList->setStyleSheet("background-color: white; color: black");
 
-        totalLabel = new QLabel("Total: $0.00", this);
+        totalLabel = new QLabel("Total Prize: $0.00", this);
         checkoutButton = new QPushButton("Checkout", this);
 
         productLayout->addWidget(scrollArea);
