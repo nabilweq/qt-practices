@@ -18,7 +18,7 @@ ProductCard::ProductCard(const QString &productName, const QString &productPrice
     layout->addWidget(imageLabel);
 
     nameLabel = new QLabel(productName, this);
-    nameLabel->setStyleSheet("font-size: 15px; font-weight: bold; color: black;");
+    nameLabel->setStyleSheet("font-size: 15px; font-weight: bold; color: grey;");
     nameLabel->setAlignment(Qt::AlignCenter);
     layout->addWidget(nameLabel);
 
