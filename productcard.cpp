@@ -8,7 +8,7 @@ ProductCard::ProductCard(const QString &productName, const QString &productPrice
     : QFrame(parent), manager(new QNetworkAccessManager(this)) {
     setFrameShape(QFrame::StyledPanel);
     setFrameShadow(QFrame::Raised);
-    setStyleSheet("background-color: white; border-radius: 12px; padding: 12px;");
+    setStyleSheet("background-color: white; border-radius: 10px; padding: 12px;");
 
     QVBoxLayout *layout = new QVBoxLayout(this);
 
