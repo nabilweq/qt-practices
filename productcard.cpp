@@ -14,7 +14,7 @@ ProductCard::ProductCard(const QString &productName, const QString &productPrice
 
     imageLabel = new QLabel(this);
     imageLabel->setAlignment(Qt::AlignCenter);
-    imageLabel->setFixedSize(160, 160);
+    imageLabel->setFixedSize(145, 145);
     layout->addWidget(imageLabel);
 
     nameLabel = new QLabel(productName, this);
