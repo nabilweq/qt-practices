@@ -40,7 +40,7 @@ ProductCard::ProductCard(const QString &productName, const QString &productPrice
     connect(manager, &QNetworkAccessManager::finished, this, &ProductCard::onImageDownloaded);
 
     QUrl imageUrl(productImage);
-    qDebug() << "Requesting image from URL:" << imageUrl.toString();
+    qDebug() << "Requesting required image from URL:" << imageUrl.toString();
     QNetworkRequest request(imageUrl);
     manager->get(request);
 }
