@@ -52,7 +52,7 @@ void ProductCard::onImageDownloaded(QNetworkReply *reply) {
         pixmap.loadFromData(imageData);
         imageLabel->setPixmap(pixmap.scaled(imageLabel->size(), Qt::KeepAspectRatio));
     } else {
-        qWarning() << "Image download error: " << reply->errorString();
+        qWarning() << "Image downloading error: " << reply->errorString();
         imageLabel->setText("Image not found");
     }
     reply->deleteLater();
