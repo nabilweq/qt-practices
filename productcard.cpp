@@ -28,7 +28,7 @@ ProductCard::ProductCard(const QString &productName, const QString &productPrice
     layout->addWidget(priceLabel);
 
     addButton = new QPushButton("Add to Cart", this);
-    addButton->setStyleSheet("background-color: red; color: white; padding: 4px;");
+    addButton->setStyleSheet("background-color: red; color: white; padding: 2px;");
     layout->addWidget(addButton);
 
     setLayout(layout);
